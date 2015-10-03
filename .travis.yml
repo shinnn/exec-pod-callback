@@ -1,0 +1,26 @@
+os:
+  - linux
+  - osx
+git:
+  depth: 1
+branches:
+  except: /^v\d/
+language: ruby
+rvm: 2.2.2
+before_install: >-
+  if [[ $TRAVIS_OS_NAME == osx ]];
+  then rm -rf ~/.nvm &&
+       git clone --depth 1 https://github.com/creationix/nvm.git ~/.nvm &&
+       source ~/.nvm/nvm.sh;
+  fi;
+before_script:
+  - nvm install stable
+  - npm install
+  - pod --version
+  - if [[ $TRAVIS_OS_NAME != osx ]]; then pod setup; fi;
+script: npm run-script coverage 
+after_script:
+  - npm install istanbul-coveralls
+  - node node_modules/.bin/istanbul-coveralls
+notifications:
+  email: false
