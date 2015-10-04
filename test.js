@@ -51,14 +51,13 @@ test('execPodCallback()', t => {
   });
 
   execPodCallback('foobarbazqux', null, (err, stdout) => {
-    t.equal(
-      err.cmd,
-      'pod foobarbazqux',
-      'should fail when the subcommand is not valid.'
+    t.ok(
+      /Command failed: pod foobarbazqux\n\[!\] Unknown command: `foobarbazqux`/.test(err.message),
+      'should include both stdout and stderr to error.message when the subcommand fails.'
     );
     t.ok(
       /Unknown command: `foobarbazqux`/.test(stdout),
-      'should output "Unknown command" message when the subcommand is not valid.'
+      'should fail when the subcommand is not valid.'
     );
   });
 

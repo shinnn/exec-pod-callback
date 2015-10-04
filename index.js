@@ -54,5 +54,13 @@ module.exports = function execPodCallback(subcommand, args, options, cb) {
     cmd = 'pod';
   }
 
-  return execFileSubcommand(cmd, subcommand, args, options, cb);
+  return execFileSubcommand(cmd, subcommand, args, options, function callback(err, stdout, stderr) {
+    if (err) {
+      err.message = err.message.replace('Command failed: ' + err.cmd + '\n', '$&' + stdout + stderr);
+      cb(err, stdout, stderr);
+      return;
+    }
+
+    cb(null, stdout, stderr);
+  });
 };
