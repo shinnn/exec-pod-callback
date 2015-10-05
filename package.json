@@ -1,6 +1,6 @@
 {
   "name": "exec-pod-callback",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Callback-style version of exec-pod",
   "repository": "shinnn/exec-pod-callback",
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
