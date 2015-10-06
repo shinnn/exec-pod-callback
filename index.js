@@ -54,6 +54,15 @@ module.exports = function execPodCallback(subcommand, args, options, cb) {
     cmd = 'pod';
   }
 
+  if (typeof cb !== 'function') {
+    throw new TypeError(
+      String(cb) +
+      ' is not a function. Expected a callback function called after `' +
+      [cmd].concat(subcommand, args).join(' ') +
+      '` command runs.'
+    );
+  }
+
   return execFileSubcommand(cmd, subcommand, args, options, function callback(err, stdout, stderr) {
     if (err) {
       err.message = err.message.replace('Command failed: ' + err.cmd + '\n', '$&' + stdout + stderr);

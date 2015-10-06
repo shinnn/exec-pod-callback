@@ -4,7 +4,7 @@ const execPodCallback = require('.');
 const test = require('tape');
 
 test('execPodCallback()', t => {
-  t.plan(17);
+  t.plan(19);
 
   t.equal(execPodCallback.name, 'execPodCallback', 'should have a function name.');
 
@@ -95,5 +95,17 @@ test('execPodCallback()', t => {
     () => execPodCallback('outdated', [], {bundleExec: 1}, t.fail),
     /TypeError.*1 is not Boolean\. `bundleExec` option must be Boolean \(`false` by default\)\./,
     'should throw a type error when `bundleExec` option is not Boolean.'
+  );
+
+  t.throws(
+    () => execPodCallback('install', ['AFNetworking', '--verbose'], false),
+    /TypeError.*callback function called after `pod install AFNetworking --verbose` command runs\./,
+    'should throw a type error when the last argument is falsy value except for `undefined`.'
+  );
+
+  t.throws(
+    () => execPodCallback('install', [], 1),
+    /TypeError.*1 is not a function\. Expected a callback function called after `pod install`/,
+    'should throw a type error when the last argument is truthy value but not a function.'
   );
 });
