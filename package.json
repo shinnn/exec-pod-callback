@@ -1,6 +1,6 @@
 {
   "name": "exec-pod-callback",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Callback-style version of exec-pod",
   "repository": "shinnn/exec-pod-callback",
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
@@ -43,7 +43,12 @@
     "cp",
     "command",
     "run",
-    "exec"
+    "exec",
+    "callback",
+    "callback-style",
+    "async",
+    "asynchronous",
+    "asynchronously"
   ],
   "dependencies": {
     "execfile-subcommand": "^1.0.1"
