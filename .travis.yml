@@ -6,7 +6,7 @@ git:
 branches:
   except: /^v\d/
 language: ruby
-rvm: 2.2.2
+rvm: 2.3.0
 before_install: >-
   if [[ $TRAVIS_OS_NAME == osx ]];
   then rm -rf ~/.nvm &&
