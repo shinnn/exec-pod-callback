@@ -29,7 +29,7 @@ test('execPodCallback()', t => {
   execPodCallback('search', ['AFNetworking'], {maxBuffer: 1}, err => {
     t.equal(
       err.message,
-      'stdout maxBuffer exceeded.',
+      'stdout maxBuffer exceeded',
       'should accept child_process#execFile options.'
     );
   });
